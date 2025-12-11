@@ -1,0 +1,635 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SpenVest Pty Ltd | Official Site</title>
+
+  <!-- Basic SEO -->
+  <meta name="description" content="SpenVest Pty Ltd is an early-stage Australian fintech company based in the ACT. We are developing technology to help people turn everyday spending into long-term financial wellbeing. Currently in private development." />
+  <meta name="keywords" content="SpenVest, fintech, Australia, ACT, startup, spending, rewards, investing" />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="SpenVest Pty Ltd | Official Site" />
+  <meta property="og:description" content="SpenVest is an ACT-based fintech startup exploring new ways to connect everyday spending with long-term financial wellbeing." />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="assets/spenvest-logo.png" />
+
+  <!-- Favicons -->
+<link rel="icon" type="image/png" sizes="16x16" href="assets/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="48x48" href="assets/favicon-48x48.png">
+<link rel="shortcut icon" href="assets/favicon-32x32.png">
+
+
+  <style>
+    :root {
+      --brand-dark: #1C3A35;   /* from your palette */
+      --brand-green: #6AB023;  /* from your palette */
+      --bg-deep: #071411;
+      --text-main: #E5F4EE;
+      --text-muted: #A5BDB5;
+      --card-bg: #123b33;
+      --border-soft: rgba(255,255,255,0.08);
+      --radius-lg: 18px;
+      --shadow-soft: 0 18px 40px rgba(0,0,0,0.4);
+      --max-width: 1040px;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background:
+        radial-gradient(circle at top left, rgba(106,176,35,0.25), transparent 55%),
+        radial-gradient(circle at bottom right, rgba(12,48,40,0.9), #071411 70%);
+      color: var(--text-main);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .page {
+      width: 100%;
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 24px 16px 40px;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 28px;
+    }
+
+    /* HEADER / BRAND */
+
+    header {
+      display: flex;
+      justify-content: center;
+      margin-top: 8px;
+      margin-bottom: 12px;
+    }
+
+    .brand-block {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+      text-align: center;
+    }
+
+    /* horizontal logo area */
+    .brand-logo {
+      width: 340px;        /* horizontal area */
+      max-width: 92vw;
+      height: 150px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      border-radius: 20px;
+      background: rgba(3,17,14,0.8);
+      box-shadow: 0 20px 45px rgba(0,0,0,0.45);
+      border: 1px solid rgba(255,255,255,0.08);
+    }
+
+    /* LOGO IMAGE – clean scaling, no extra box */
+    .brand-logo img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      display: block;
+    }
+
+    .brand-name {
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      font-size: 1rem;
+      color: #F3FFF9;
+      margin-top: 4px;
+    }
+
+    .brand-location {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+    }
+
+    .status-chip {
+      margin-top: 6px;
+      padding: 6px 12px;
+      border-radius: 999px;
+      font-size: 0.75rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(106,176,35,0.1);
+      border: 1px solid rgba(106,176,35,0.6);
+      color: #E8FFD1;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .status-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 999px;
+      background: var(--brand-green);
+      box-shadow: 0 0 0 6px rgba(106,176,35,0.35);
+    }
+
+    @media (max-width: 480px) {
+      .brand-logo {
+        width: 280px;
+        height: 130px;
+      }
+    }
+
+    /* ----------------------------------------
+       PREMIUM FOUNDER CARD
+    ---------------------------------------- */
+
+    .founder-premium {
+      position: relative;
+      padding: 20px;
+      border-radius: 18px;
+      background: linear-gradient(145deg, rgba(16,40,34,0.95), rgba(5,20,17,0.95));
+      border: 1px solid rgba(106,176,35,0.25); /* logo-green accent */
+      box-shadow:
+          0 0 22px rgba(106,176,35,0.12),
+          0 14px 32px rgba(0,0,0,0.45);
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+      overflow: hidden;
+    }
+
+    .founder-premium:hover {
+      transform: translateY(-3px);
+      box-shadow:
+          0 0 30px rgba(106,176,35,0.18),
+          0 18px 40px rgba(0,0,0,0.55);
+    }
+
+    .founder-badge {
+      display: inline-block;
+      padding: 4px 12px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      border-radius: 999px;
+      background: rgba(106,176,35,0.18);
+      color: #d6f8ce;
+      border: 1px solid rgba(106,176,35,0.45);
+      margin-bottom: 14px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    .founder-body {
+      display: flex;
+      gap: 16px;
+      align-items: flex-start;
+    }
+
+    .founder-img-premium {
+      width: 72px;
+      height: 72px;
+      border-radius: 14px;
+      object-fit: cover;
+      flex-shrink: 0;
+      border: 1.5px solid rgba(255,255,255,0.18);
+      box-shadow:
+          0 0 12px rgba(106,176,35,0.25),
+          0 4px 10px rgba(0,0,0,0.45);
+    }
+
+    .founder-info {
+      flex-grow: 1;
+    }
+
+    .founder-name {
+      margin: 0;
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: #ffffff;
+      letter-spacing: 0.01em;
+    }
+
+    .founder-role {
+      margin: 2px 0 10px;
+      font-size: 0.82rem;
+      font-weight: 500;
+      color: #b6cfc8;
+    }
+
+    .founder-desc {
+      margin-bottom: 8px;
+      font-size: 0.83rem;
+      line-height: 1.48;
+      color: #d7e7e0;
+    }
+
+    @media (max-width: 480px) {
+      .founder-body {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+      }
+
+      .founder-img-premium {
+        width: 100px;
+        height: 100px;
+        border-radius: 14px;
+      }
+
+      .founder-desc {
+        text-align: center;
+      }
+    }
+
+    /* LAYOUT */
+
+    main {
+      display: grid;
+      grid-template-columns: minmax(0, 3fr) minmax(0, 2.4fr);
+      gap: 24px;
+      align-items: flex-start;
+    }
+
+    @media (max-width: 900px) {
+      main {
+        grid-template-columns: minmax(0, 1fr);
+      }
+    }
+
+    /* HERO */
+
+    .hero {
+      background: linear-gradient(135deg, rgba(12,48,40,0.96), rgba(7,26,22,0.98));
+      border-radius: 24px;
+      padding: 20px 20px 22px;
+      border: 1px solid var(--border-soft);
+      box-shadow: var(--shadow-soft);
+    }
+
+    .hero-title {
+      font-size: clamp(1.7rem, 3vw, 2.3rem);
+      font-weight: 680;
+      line-height: 1.2;
+      color: #F5FFF8;
+      margin-bottom: 12px;
+    }
+
+    .hero-title span {
+      color: var(--brand-green);
+    }
+
+    .hero-body {
+      font-size: 0.95rem;
+      color: var(--text-main);
+      line-height: 1.6;
+    }
+
+    .hero-body strong {
+      font-weight: 600;
+      color: #ffffff;
+    }
+
+    .hero-note {
+      margin-top: 10px;
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      border-left: 2px solid rgba(255,255,255,0.18);
+      padding-left: 10px;
+    }
+
+    .hero-actions {
+      margin-top: 16px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .btn {
+      border-radius: 999px;
+      padding: 9px 16px;
+      font-size: 0.88rem;
+      font-weight: 500;
+      border: 1px solid transparent;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      cursor: default;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, #6AB023, #4c8d1c);
+      color: #021106;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.45);
+    }
+
+    .btn-ghost {
+      background: rgba(7,26,22,0.85);
+      border-color: rgba(190,221,209,0.35);
+      color: var(--text-muted);
+    }
+
+    .pill {
+      font-size: 0.78rem;
+      padding: 6px 11px;
+      border-radius: 999px;
+      border: 1px dashed rgba(183,211,199,0.6);
+      color: var(--text-muted);
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(7,26,22,0.9);
+    }
+
+    .pill-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 999px;
+      background: var(--brand-green);
+    }
+
+    /* RIGHT COLUMN CARDS */
+
+    .right-column {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .card {
+      background: linear-gradient(145deg, rgba(16,60,49,0.98), rgba(9,33,28,0.98));
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--border-soft);
+      padding: 13px 14px 14px;
+      box-shadow: 0 12px 28px rgba(0,0,0,0.45);
+    }
+
+    .card-title {
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: #F3FFF9;
+      margin-bottom: 6px;
+    }
+
+    .card-body {
+      font-size: 0.83rem;
+      color: var(--text-main);
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .card-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      margin-top: 4px;
+    }
+
+    .card-list li {
+      display: flex;
+      gap: 6px;
+      align-items: flex-start;
+      font-size: 0.8rem;
+      color: var(--text-muted);
+    }
+
+    .card-list li::before {
+      content: "•";
+      color: var(--brand-green);
+      margin-top: 1px;
+    }
+
+    .tag-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: 4px;
+    }
+
+    .tag {
+      font-size: 0.72rem;
+      padding: 3px 8px;
+      border-radius: 999px;
+      border: 1px solid rgba(190,221,209,0.4);
+      background: rgba(7,26,22,0.9);
+      color: var(--text-muted);
+    }
+
+    /* FOOTER */
+
+    footer {
+      max-width: var(--max-width);
+      width: 100%;
+      margin: 0 auto;
+      padding: 12px 16px 18px;
+      border-top: 1px solid rgba(15,40,33,0.9);
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .footer-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .footer-links a {
+      border-bottom: 1px dashed transparent;
+    }
+
+    .footer-links a:hover {
+      border-bottom-color: rgba(190,221,209,0.7);
+    }
+
+    .legal-box {
+      margin-top: 4px;
+      padding: 10px 11px;
+      border-radius: 12px;
+      border: 1px solid rgba(190,221,209,0.4);
+      background: rgba(7,26,22,0.92);
+      font-size: 0.74rem;
+      color: var(--text-muted);
+      line-height: 1.5;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="page">
+    <!-- HEADER: BIG LOGO, NAME, LOCATION -->
+    <header>
+      <div class="brand-block">
+        <div class="brand-logo">
+          <img src="assets/spenvest-logo.png" alt="SpenVest logo" />
+        </div>
+        <div class="brand-name">SpenVest Pty Ltd</div>
+        <div class="brand-location">Canberra, ACT · Australia</div>
+
+        <div class="status-chip">
+          <span class="status-dot"></span>
+          In active development
+        </div>
+      </div>
+    </header>
+
+    <!-- MAIN CONTENT -->
+    <main>
+      <!-- LEFT: HERO -->
+      <section class="hero">
+        <h1 class="hero-title">
+          We are building <span>SpenVest</span> — a modern way to connect everyday spending with long-term financial wellbeing.
+        </h1>
+
+        <p class="hero-body">
+          SpenVest Pty Ltd is an early-stage fintech company based in the Australian Capital Territory.
+          Our work focuses on developing technology that helps people get more long-term value from the money
+          they already spend, through responsible automation and clear, user-friendly experiences.
+          <br /><br />
+          At this stage we are <strong>not publicly disclosing our internal system design, algorithms or reward structures</strong>.
+          This website exists only to confirm our identity, outline our focus at a high level, and provide a point of contact while
+          we continue research, prototyping and regulatory planning.
+        </p>
+
+        <p class="hero-note">
+          Important: SpenVest is not yet available to the public. Nothing on this website is financial advice, a product disclosure,
+          or an invitation to invest or acquire any financial product.
+        </p>
+
+        <div class="hero-actions">
+          <div class="btn btn-primary">Coming soon</div>
+          <div class="btn btn-ghost">Private beta · By invitation only</div>
+          <div class="pill">
+            <span class="pill-dot"></span>
+            Core IP under active development &amp; protection
+          </div>
+        </div>
+      </section>
+
+      <!-- RIGHT: INFO CARDS -->
+      <aside class="right-column">
+        <!-- High-level overview -->
+        <div class="card">
+          <div class="card-title">What we can share (high level)</div>
+          <div class="card-body">
+            <p>SpenVest is exploring ways to:</p>
+            <ul class="card-list">
+              <li>Connect everyday payment activity with long-term saving and investing behaviour.</li>
+              <li>Use automation and data to support better financial habits without forcing major lifestyle changes.</li>
+              <li>Collaborate respectfully with merchants, partners and regulators within the Australian ecosystem.</li>
+            </ul>
+            <div class="tag-row">
+              <span class="tag">Fintech R&amp;D</span>
+              <span class="tag">ACT-based</span>
+              <span class="tag">Private development</span>
+              <span class="tag">IP protection in progress</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Company info -->
+        <div class="card">
+          <div class="card-title">Company information</div>
+          <div class="card-body">
+            <ul class="card-list">
+              <li>SpenVest Pty Ltd</li>
+              <li>Registered in the Australian Capital Territory</li>
+              <li>ACN: [Insert ACN once issued]</li>
+              <li>
+                Registered office:<br />
+                <span style="color: var(--text-muted);">
+                   Level 2, 7 Neptune Street, Woden 2606
+                </span>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Contact -->
+        <div class="card" id="contact">
+          <div class="card-title">Contact &amp; partnerships</div>
+          <div class="card-body">
+            <p>For high-level enquiries or potential partnerships:</p>
+            <ul class="card-list">
+              <li>Email (general): info@spenvest.com.au</li>
+            </ul>
+            <p style="font-size:0.78rem; color:var(--text-muted);">
+              Please note: We are not currently onboarding retail customers or offering live financial products.
+            </p>
+          </div>
+        </div>
+
+        <!-- Founder Premium Card -->
+        <div class="card founder-premium">
+          <div class="founder-badge">Founder</div>
+
+          <div class="founder-body">
+            <img src="assets/founder.jpg" alt="Founder - Sujan Thapa" class="founder-img-premium">
+
+            <div class="founder-info">
+              <h3 class="founder-name">Sujan Thapa</h3>
+              <p class="founder-role">Founder & Technical Architect, SpenVest</p>
+
+              <p class="founder-desc">
+                Sujan is an Australian-based fintech innovator and senior technical engineer with deep expertise in enterprise systems, automation, and data-driven financial design.
+                His vision for SpenVest is to transform everyday spending into long-term financial wellbeing through smart micro-automation, merchant collaboration, and user-centric simplicity.
+              </p>
+
+              <p class="founder-desc">
+                With extensive engineering experience and a strong focus on scalable architecture, Sujan leads SpenVest’s technology, strategy, and compliance direction—ensuring the platform aligns with future Australian financial standards.
+              </p>
+            </div>
+          </div>
+        </div>
+
+      </aside>
+    </main>
+  </div>
+
+  <!-- FOOTER & LEGAL -->
+  <footer>
+    <div class="footer-row">
+      <div>© <span id="year"></span> SpenVest Pty Ltd. All rights reserved.</div>
+      <div class="footer-links">
+        <a href="#contact">Contact</a>
+      </div>
+    </div>
+
+    <div class="legal-box">
+      <strong>Regulatory notice (Australia)</strong><br />
+      SpenVest Pty Ltd is not currently providing financial services, issuing financial products,
+      or operating a registered managed investment scheme. The information on this website is general,
+      introductory and subject to change. It does not constitute financial advice, a recommendation,
+      or an invitation to invest or acquire any financial product. Any future offering will be subject
+      to separate terms, disclosures and, where applicable, regulatory approvals or licences.
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
