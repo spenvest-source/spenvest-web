@@ -153,6 +153,45 @@
       }
     }
 
+/* NAV BAR UNDER LOGO */
+.top-nav {
+  display: flex;
+  justify-content: center;
+  margin: 10px 0 6px;
+}
+
+.nav-inner {
+  width: 100%;
+  max-width: var(--max-width);
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.nav-link {
+  font-size: 0.82rem;
+  padding: 8px 12px;
+  border-radius: 999px;
+  border: 1px solid rgba(190,221,209,0.35);
+  background: rgba(7,26,22,0.7);
+  color: var(--text-muted);
+  transition: transform 0.15s ease, border-color 0.15s ease, color 0.15s ease;
+}
+
+.nav-link:hover {
+  transform: translateY(-1px);
+  border-color: rgba(106,176,35,0.55);
+  color: #E8FFD1;
+}
+
+.nav-link.primary {
+  background: linear-gradient(135deg, #6AB023, #4c8d1c);
+  color: #021106;
+  border-color: rgba(106,176,35,0.25);
+  box-shadow: 0 10px 25px rgba(0,0,0,0.35);
+}
+
     /* ----------------------------------------
        PREMIUM FOUNDER CARD
     ---------------------------------------- */
@@ -496,6 +535,23 @@
       </div>
     </header>
 
+    <!-- TOP NAV (Global site links) -->
+<div class="top-nav">
+  <div class="nav-inner">
+    <a class="nav-link" href="#contact">Contact</a>
+
+    <!-- Programs must go to AU site -->
+    <a class="nav-link" href="https://spenvest.com.au/programs" target="_blank" rel="noopener noreferrer">
+      Programs (Australia)
+    </a>
+
+    <a class="nav-link primary" href="https://spenvest.com.au/programs/spenvest-lab" target="_blank" rel="noopener noreferrer">
+      SpenVest-Lab
+    </a>
+  </div>
+</div>
+
+
     <!-- MAIN CONTENT -->
     <main>
       <!-- LEFT: HERO -->
@@ -527,6 +583,35 @@
             Core IP under active development &amp; protection
           </div>
         </div>
+
+        <!-- PROGRAMS PREVIEW (Company Portfolio) -->
+<section class="hero" style="margin-top: 14px;">
+  <h2 class="hero-title" style="font-size:1.35rem;">
+    Programs <span>by SpenVest</span>
+  </h2>
+
+  <p class="hero-body">
+    SpenVest operates capability-building programs through its Australian entity to support
+    practical job readiness and enterprise skills development. Programs are published and managed on
+    <strong>spenvest.com.au</strong>.
+  </p>
+
+  <div class="hero-actions">
+    <a class="btn btn-primary" href="https://spenvest.com.au/programs" target="_blank" rel="noopener noreferrer">
+      Explore Programs (Australia)
+    </a>
+
+    <a class="btn btn-ghost" href="https://spenvest.com.au/programs/spenvest-lab" target="_blank" rel="noopener noreferrer">
+      SpenVest-Lab
+    </a>
+
+    <div class="pill">
+      <span class="pill-dot"></span>
+      Training programs are simulation-based (not employment)
+    </div>
+  </div>
+</section>
+
       </section>
 
       <!-- RIGHT: INFO CARDS -->
@@ -587,7 +672,7 @@
           <div class="founder-badge">Founder</div>
 
           <div class="founder-body">
-            <img src="assets/Founder.jpg" alt="Founder - Sujan Thapa" class="founder-img-premium">
+            <img src="assets/founder.jpg" alt="Founder - Sujan Thapa" class="founder-img-premium">
 
             <div class="founder-info">
               <h3 class="founder-name">Sujan Thapa</h3>
@@ -625,7 +710,17 @@
       introductory and subject to change. It does not constitute financial advice, a recommendation,
       or an invitation to invest or acquire any financial product. Any future offering will be subject
       to separate terms, disclosures and, where applicable, regulatory approvals or licences.
-    </div>
+    <br /><br />
+<strong>Training &amp; internship disclaimer (SpenVest-Lab)</strong><br />
+SpenVest-Lab programs are training and simulation-based initiatives operated by SpenVest Pty Ltd (Australia).
+Participation does not guarantee employment. Internship pathways, where offered, are training-focused and subject
+to performance, availability, and program requirements.
+<div class="footer-links">
+  <a href="#contact">Contact</a>
+  <a href="https://spenvest.com.au/programs" target="_blank" rel="noopener noreferrer">Programs (AU)</a>
+</div>
+
+
   </footer>
 
   <script>
@@ -633,4 +728,3 @@
   </script>
 </body>
 </html>
-
