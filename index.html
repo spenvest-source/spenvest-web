@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -16,66 +16,212 @@
   <meta property="og:image" content="assets/spenvest-logo.png" />
 
   <!-- Favicons -->
-<link rel="icon" type="image/png" sizes="16x16" href="assets/favicon-16x16.png">
-<link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32x32.png">
-<link rel="icon" type="image/png" sizes="48x48" href="assets/favicon-48x48.png">
-<link rel="shortcut icon" href="assets/favicon-32x32.png">
-
+  <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon-16x16.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="48x48" href="assets/favicon-48x48.png">
+  <link rel="shortcut icon" href="assets/favicon-32x32.png">
 
   <style>
     :root {
-      --brand-dark: #1C3A35;   /* from your palette */
-      --brand-green: #6AB023;  /* from your palette */
+      --brand-dark: #1C3A35;
+      --brand-green: #6AB023;
+
       --bg-deep: #071411;
       --text-main: #E5F4EE;
       --text-muted: #A5BDB5;
-      --card-bg: #123b33;
-      --border-soft: rgba(255,255,255,0.08);
+
+      --border-soft: rgba(255,255,255,0.09);
+
       --radius-lg: 18px;
-      --shadow-soft: 0 18px 40px rgba(0,0,0,0.4);
-      --max-width: 1040px;
+      --radius-xl: 24px;
+
+      --shadow-soft: 0 18px 40px rgba(0,0,0,0.40);
+      --shadow-hard: 0 22px 55px rgba(0,0,0,0.55);
+
+      --max-width: 1120px;
+
+      --glass: rgba(3, 17, 14, 0.58);
+      --glass2: rgba(7, 26, 22, 0.70);
     }
 
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html, body { height: 100%; }
     body {
       font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
       background:
-        radial-gradient(circle at top left, rgba(106,176,35,0.25), transparent 55%),
-        radial-gradient(circle at bottom right, rgba(12,48,40,0.9), #071411 70%);
+        radial-gradient(circle at top left, rgba(106,176,35,0.22), transparent 55%),
+        radial-gradient(circle at bottom right, rgba(12,48,40,0.92), #071411 70%);
       color: var(--text-main);
       min-height: 100vh;
       display: flex;
       flex-direction: column;
+      overflow-x: hidden;
     }
 
-    a {
-      color: inherit;
-      text-decoration: none;
-    }
+    a { color: inherit; text-decoration: none; }
 
     .page {
       width: 100%;
       max-width: var(--max-width);
       margin: 0 auto;
-      padding: 24px 16px 40px;
+      padding: 18px 16px 40px;
       flex: 1;
       display: flex;
       flex-direction: column;
-      gap: 28px;
+      gap: 18px;
     }
 
-    /* HEADER / BRAND */
+    /* ==============================
+       PREMIUM TOP BAR (STICKY NAV)
+    ============================== */
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      margin: 10px auto 0;
+      width: 100%;
+      max-width: var(--max-width);
+    }
 
+    .topbar-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      padding: 10px 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,0.10);
+      background: linear-gradient(135deg, rgba(7, 26, 22, 0.70), rgba(3, 17, 14, 0.58));
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      box-shadow: 0 14px 40px rgba(0,0,0,0.35);
+    }
+
+    .topbar-left {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding-left: 6px;
+      min-width: 240px;
+    }
+
+    .mini-mark {
+      width: 34px;
+      height: 34px;
+      border-radius: 12px;
+      background: radial-gradient(circle at top left, rgba(106,176,35,0.45), rgba(7,26,22,0.95));
+      border: 1px solid rgba(255,255,255,0.12);
+      box-shadow: 0 0 0 8px rgba(106,176,35,0.08);
+      position: relative;
+      overflow: hidden;
+    }
+    .mini-mark:after{
+      content:"";
+      position:absolute;
+      inset:-2px;
+      background: radial-gradient(circle at 25% 20%, rgba(255,255,255,0.10), transparent 45%);
+      pointer-events:none;
+    }
+
+    .topbar-brand {
+      display: flex;
+      flex-direction: column;
+      line-height: 1.05;
+    }
+
+    .topbar-brand .name { font-weight: 800; letter-spacing: 0.03em; font-size: 0.92rem; }
+    .topbar-brand .sub { font-size: 0.72rem; color: var(--text-muted); }
+
+    .topbar-nav {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      justify-content: center;
+      flex: 1;
+    }
+
+    .topbar-link {
+      font-size: 0.78rem;
+      padding: 8px 12px;
+      border-radius: 999px;
+      border: 1px solid rgba(190,221,209,0.30);
+      background: rgba(7,26,22,0.60);
+      color: var(--text-muted);
+      transition: transform 0.15s ease, border-color 0.15s ease, color 0.15s ease, background 0.15s ease;
+      white-space: nowrap;
+    }
+    .topbar-link:hover {
+      transform: translateY(-1px);
+      border-color: rgba(106,176,35,0.55);
+      color: #E8FFD1;
+      background: rgba(7,26,22,0.78);
+    }
+    .topbar-link.active {
+      border-color: rgba(106,176,35,0.65);
+      color: #E8FFD1;
+      background: rgba(106,176,35,0.10);
+      box-shadow: 0 0 0 8px rgba(106,176,35,0.06);
+    }
+
+    .topbar-actions {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding-right: 6px;
+      min-width: 260px;
+      justify-content: flex-end;
+    }
+
+    .btn {
+      border-radius: 999px;
+      padding: 9px 14px;
+      font-size: 0.82rem;
+      font-weight: 650;
+      border: 1px solid transparent;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      cursor: pointer;
+      user-select: none;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, #6AB023, #4c8d1c);
+      color: #021106;
+      border-color: rgba(106,176,35,0.25);
+      box-shadow: 0 10px 25px rgba(0,0,0,0.35);
+    }
+
+    .btn-ghost {
+      background: rgba(7,26,22,0.70);
+      border-color: rgba(190,221,209,0.28);
+      color: var(--text-muted);
+    }
+    .btn-ghost:hover { border-color: rgba(106,176,35,0.45); color: #E8FFD1; }
+
+    .icon-dot {
+      width: 9px; height: 9px; border-radius: 999px; background: var(--brand-green);
+      box-shadow: 0 0 0 6px rgba(106,176,35,0.18);
+    }
+
+    @media (max-width: 980px) {
+      .topbar-brand .sub { display: none; }
+      .topbar-left { min-width: unset; }
+      .topbar-actions { min-width: unset; }
+    }
+
+    @media (max-width: 780px) {
+      .topbar-nav { display: none; }
+      .topbar-inner { border-radius: 20px; }
+    }
+
+    /* ==============================
+       BRAND HEADER (LOGO ADJUSTED)
+    ============================== */
     header {
       display: flex;
       justify-content: center;
-      margin-top: 8px;
-      margin-bottom: 12px;
+      margin-top: 6px;
     }
 
     .brand-block {
@@ -86,263 +232,137 @@
       text-align: center;
     }
 
-    /* horizontal logo area */
+    /* Logo container is now responsive + premium */
     .brand-logo {
-      width: 340px;        /* horizontal area */
-      max-width: 92vw;
-      height: 150px;
+      width: min(520px, 92vw);
+      height: clamp(130px, 20vw, 170px);
       display: flex;
       align-items: center;
       justify-content: center;
       overflow: hidden;
-      border-radius: 20px;
-      background: rgba(3,17,14,0.8);
-      box-shadow: 0 20px 45px rgba(0,0,0,0.45);
-      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 22px;
+      background: rgba(3,17,14,0.78);
+      box-shadow: 0 24px 60px rgba(0,0,0,0.50);
+      border: 1px solid rgba(255,255,255,0.10);
+      position: relative;
+      padding: 8px 16px;
     }
 
-    /* LOGO IMAGE – clean scaling, no extra box */
+    .brand-logo:before {
+      content:"";
+      position:absolute;
+      inset:-1px;
+      background:
+        radial-gradient(circle at 30% 10%, rgba(106,176,35,0.18), transparent 50%),
+        radial-gradient(circle at 80% 120%, rgba(106,176,35,0.14), transparent 55%),
+        linear-gradient(180deg, rgba(255,255,255,0.05), transparent 35%);
+      pointer-events:none;
+    }
+
+    /* LOGO IMAGE – adjusted for perfect centering and no stretching */
     .brand-logo img {
       width: 100%;
       height: 100%;
       object-fit: contain;
+      object-position: center;
       display: block;
+      max-width: 520px;
+      filter: drop-shadow(0 10px 18px rgba(0,0,0,0.35));
+      position: relative;
+      z-index: 1;
     }
 
     .brand-name {
-      font-weight: 700;
-      letter-spacing: 0.1em;
+      font-weight: 850;
+      letter-spacing: 0.12em;
       text-transform: uppercase;
-      font-size: 1rem;
+      font-size: 1.02rem;
       color: #F3FFF9;
       margin-top: 4px;
     }
 
-    .brand-location {
-      font-size: 0.9rem;
-      color: var(--text-muted);
-    }
+    .brand-location { font-size: 0.92rem; color: var(--text-muted); }
 
     .status-chip {
-      margin-top: 6px;
-      padding: 6px 12px;
+      margin-top: 2px;
+      padding: 7px 12px;
       border-radius: 999px;
       font-size: 0.75rem;
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      background: rgba(106,176,35,0.1);
-      border: 1px solid rgba(106,176,35,0.6);
+      background: rgba(106,176,35,0.10);
+      border: 1px solid rgba(106,176,35,0.55);
       color: #E8FFD1;
       letter-spacing: 0.08em;
       text-transform: uppercase;
     }
 
     .status-dot {
-      width: 8px;
-      height: 8px;
-      border-radius: 999px;
+      width: 8px; height: 8px; border-radius: 999px;
       background: var(--brand-green);
-      box-shadow: 0 0 0 6px rgba(106,176,35,0.35);
+      box-shadow: 0 0 0 6px rgba(106,176,35,0.30);
+      animation: pulse 1.8s ease-in-out infinite;
     }
 
-    @media (max-width: 480px) {
-      .brand-logo {
-        width: 280px;
-        height: 130px;
-      }
+    @keyframes pulse {
+      0%, 100% { box-shadow: 0 0 0 6px rgba(106,176,35,0.22); }
+      50% { box-shadow: 0 0 0 10px rgba(106,176,35,0.10); }
     }
 
-/* NAV BAR UNDER LOGO */
-.top-nav {
-  display: flex;
-  justify-content: center;
-  margin: 10px 0 6px;
-}
-
-.nav-inner {
-  width: 100%;
-  max-width: var(--max-width);
-  display: flex;
-  justify-content: center;
-  gap: 12px;
-  flex-wrap: wrap;
-}
-
-.nav-link {
-  font-size: 0.82rem;
-  padding: 8px 12px;
-  border-radius: 999px;
-  border: 1px solid rgba(190,221,209,0.35);
-  background: rgba(7,26,22,0.7);
-  color: var(--text-muted);
-  transition: transform 0.15s ease, border-color 0.15s ease, color 0.15s ease;
-}
-
-.nav-link:hover {
-  transform: translateY(-1px);
-  border-color: rgba(106,176,35,0.55);
-  color: #E8FFD1;
-}
-
-.nav-link.primary {
-  background: linear-gradient(135deg, #6AB023, #4c8d1c);
-  color: #021106;
-  border-color: rgba(106,176,35,0.25);
-  box-shadow: 0 10px 25px rgba(0,0,0,0.35);
-}
-
-    /* ----------------------------------------
-       PREMIUM FOUNDER CARD
-    ---------------------------------------- */
-
-    .founder-premium {
-      position: relative;
-      padding: 20px;
-      border-radius: 18px;
-      background: linear-gradient(145deg, rgba(16,40,34,0.95), rgba(5,20,17,0.95));
-      border: 1px solid rgba(106,176,35,0.25); /* logo-green accent */
-      box-shadow:
-          0 0 22px rgba(106,176,35,0.12),
-          0 14px 32px rgba(0,0,0,0.45);
-      transition: transform 0.25s ease, box-shadow 0.25s ease;
-      overflow: hidden;
-    }
-
-    .founder-premium:hover {
-      transform: translateY(-3px);
-      box-shadow:
-          0 0 30px rgba(106,176,35,0.18),
-          0 18px 40px rgba(0,0,0,0.55);
-    }
-
-    .founder-badge {
-      display: inline-block;
-      padding: 4px 12px;
-      font-size: 0.75rem;
-      font-weight: 600;
-      border-radius: 999px;
-      background: rgba(106,176,35,0.18);
-      color: #d6f8ce;
-      border: 1px solid rgba(106,176,35,0.45);
-      margin-bottom: 14px;
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-    }
-
-    .founder-body {
-      display: flex;
-      gap: 16px;
-      align-items: flex-start;
-    }
-
-    .founder-img-premium {
-      width: 72px;
-      height: 72px;
-      border-radius: 14px;
-      object-fit: cover;
-      flex-shrink: 0;
-      border: 1.5px solid rgba(255,255,255,0.18);
-      box-shadow:
-          0 0 12px rgba(106,176,35,0.25),
-          0 4px 10px rgba(0,0,0,0.45);
-    }
-
-    .founder-info {
-      flex-grow: 1;
-    }
-
-    .founder-name {
-      margin: 0;
-      font-size: 1.05rem;
-      font-weight: 700;
-      color: #ffffff;
-      letter-spacing: 0.01em;
-    }
-
-    .founder-role {
-      margin: 2px 0 10px;
-      font-size: 0.82rem;
-      font-weight: 500;
-      color: #b6cfc8;
-    }
-
-    .founder-desc {
-      margin-bottom: 8px;
-      font-size: 0.83rem;
-      line-height: 1.48;
-      color: #d7e7e0;
-    }
-
-    @media (max-width: 480px) {
-      .founder-body {
-        flex-direction: column;
-        align-items: center;
-        text-align: center;
-      }
-
-      .founder-img-premium {
-        width: 100px;
-        height: 100px;
-        border-radius: 14px;
-      }
-
-      .founder-desc {
-        text-align: center;
-      }
-    }
-
-    /* LAYOUT */
-
+    /* ==============================
+       LAYOUT
+    ============================== */
     main {
       display: grid;
-      grid-template-columns: minmax(0, 3fr) minmax(0, 2.4fr);
-      gap: 24px;
+      grid-template-columns: minmax(0, 3fr) minmax(0, 2.35fr);
+      gap: 18px;
       align-items: flex-start;
+      margin-top: 6px;
     }
+    @media (max-width: 900px) { main { grid-template-columns: 1fr; } }
 
-    @media (max-width: 900px) {
-      main {
-        grid-template-columns: minmax(0, 1fr);
-      }
-    }
-
-    /* HERO */
-
-    .hero {
-      background: linear-gradient(135deg, rgba(12,48,40,0.96), rgba(7,26,22,0.98));
-      border-radius: 24px;
-      padding: 20px 20px 22px;
+    /* ==============================
+       PREMIUM PANELS / CARDS
+    ============================== */
+    .panel {
+      border-radius: var(--radius-xl);
       border: 1px solid var(--border-soft);
+      background: linear-gradient(135deg, rgba(12,48,40,0.96), rgba(7,26,22,0.98));
       box-shadow: var(--shadow-soft);
+      position: relative;
+      overflow: hidden;
     }
+    .panel:before {
+      content:"";
+      position:absolute;
+      inset:-2px;
+      background:
+        radial-gradient(circle at 15% 10%, rgba(106,176,35,0.16), transparent 48%),
+        radial-gradient(circle at 85% 120%, rgba(106,176,35,0.12), transparent 55%);
+      opacity: 0.95;
+      pointer-events:none;
+    }
+    .panel > * { position: relative; z-index: 1; }
+
+    .hero { padding: 20px 20px 22px; }
 
     .hero-title {
-      font-size: clamp(1.7rem, 3vw, 2.3rem);
-      font-weight: 680;
-      line-height: 1.2;
+      font-size: clamp(1.72rem, 3vw, 2.35rem);
+      font-weight: 780;
+      line-height: 1.18;
       color: #F5FFF8;
       margin-bottom: 12px;
+      letter-spacing: -0.01em;
     }
+    .hero-title span { color: var(--brand-green); }
 
-    .hero-title span {
-      color: var(--brand-green);
-    }
-
-    .hero-body {
-      font-size: 0.95rem;
-      color: var(--text-main);
-      line-height: 1.6;
-    }
-
-    .hero-body strong {
-      font-weight: 600;
-      color: #ffffff;
-    }
+    .hero-body { font-size: 0.96rem; color: var(--text-main); line-height: 1.62; }
+    .hero-body strong { font-weight: 750; color: #ffffff; }
 
     .hero-note {
       margin-top: 10px;
-      font-size: 0.82rem;
+      font-size: 0.83rem;
       color: var(--text-muted);
       border-left: 2px solid rgba(255,255,255,0.18);
       padding-left: 10px;
@@ -353,122 +373,129 @@
       display: flex;
       flex-wrap: wrap;
       gap: 10px;
-    }
-
-    .btn {
-      border-radius: 999px;
-      padding: 9px 16px;
-      font-size: 0.88rem;
-      font-weight: 500;
-      border: 1px solid transparent;
-      display: inline-flex;
       align-items: center;
-      gap: 8px;
-      cursor: default;
-    }
-
-    .btn-primary {
-      background: linear-gradient(135deg, #6AB023, #4c8d1c);
-      color: #021106;
-      box-shadow: 0 10px 25px rgba(0,0,0,0.45);
-    }
-
-    .btn-ghost {
-      background: rgba(7,26,22,0.85);
-      border-color: rgba(190,221,209,0.35);
-      color: var(--text-muted);
     }
 
     .pill {
       font-size: 0.78rem;
-      padding: 6px 11px;
+      padding: 7px 11px;
       border-radius: 999px;
-      border: 1px dashed rgba(183,211,199,0.6);
+      border: 1px dashed rgba(183,211,199,0.55);
       color: var(--text-muted);
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      background: rgba(7,26,22,0.9);
+      background: rgba(7,26,22,0.88);
     }
+    .pill-dot { width: 7px; height: 7px; border-radius: 999px; background: var(--brand-green); }
 
-    .pill-dot {
-      width: 7px;
-      height: 7px;
-      border-radius: 999px;
-      background: var(--brand-green);
-    }
-
-    /* RIGHT COLUMN CARDS */
-
-    .right-column {
-      display: flex;
-      flex-direction: column;
-      gap: 14px;
-    }
+    .right-column { display: flex; flex-direction: column; gap: 12px; }
 
     .card {
-      background: linear-gradient(145deg, rgba(16,60,49,0.98), rgba(9,33,28,0.98));
+      background: linear-gradient(145deg, rgba(16,60,49,0.92), rgba(9,33,28,0.95));
       border-radius: var(--radius-lg);
       border: 1px solid var(--border-soft);
-      padding: 13px 14px 14px;
-      box-shadow: 0 12px 28px rgba(0,0,0,0.45);
+      padding: 14px 14px 15px;
+      box-shadow: 0 14px 35px rgba(0,0,0,0.45);
+      position: relative;
+      overflow: hidden;
     }
+    .card:before {
+      content:"";
+      position:absolute;
+      inset:-2px;
+      background: radial-gradient(circle at 20% 5%, rgba(106,176,35,0.12), transparent 48%);
+      opacity: 0.85;
+      pointer-events:none;
+    }
+    .card > * { position: relative; z-index: 1; }
 
-    .card-title {
-      font-size: 0.9rem;
-      font-weight: 600;
-      color: #F3FFF9;
-      margin-bottom: 6px;
-    }
-
-    .card-body {
-      font-size: 0.83rem;
-      color: var(--text-main);
-      display: flex;
-      flex-direction: column;
-      gap: 6px;
-    }
+    .card-title { font-size: 0.92rem; font-weight: 720; color: #F3FFF9; margin-bottom: 6px; }
+    .card-body { font-size: 0.83rem; color: var(--text-main); display: flex; flex-direction: column; gap: 7px; }
 
     .card-list {
       list-style: none;
       display: flex;
       flex-direction: column;
-      gap: 4px;
+      gap: 5px;
       margin-top: 4px;
     }
-
     .card-list li {
       display: flex;
-      gap: 6px;
+      gap: 8px;
       align-items: flex-start;
-      font-size: 0.8rem;
+      font-size: 0.81rem;
       color: var(--text-muted);
+      line-height: 1.45;
     }
+    .card-list li::before { content: "•"; color: var(--brand-green); margin-top: 1px; }
 
-    .card-list li::before {
-      content: "•";
-      color: var(--brand-green);
-      margin-top: 1px;
-    }
-
-    .tag-row {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 6px;
-      margin-top: 4px;
-    }
-
+    .tag-row { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 6px; }
     .tag {
       font-size: 0.72rem;
-      padding: 3px 8px;
+      padding: 4px 9px;
       border-radius: 999px;
-      border: 1px solid rgba(190,221,209,0.4);
-      background: rgba(7,26,22,0.9);
+      border: 1px solid rgba(190,221,209,0.35);
+      background: rgba(7,26,22,0.88);
       color: var(--text-muted);
     }
 
-    /* FOOTER */
+    /* ==============================
+       FOUNDER PREMIUM CARD
+    ============================== */
+    .founder-premium {
+      border: 1px solid rgba(106,176,35,0.28);
+      box-shadow:
+        0 0 26px rgba(106,176,35,0.10),
+        0 16px 40px rgba(0,0,0,0.55);
+      transition: transform 0.22s ease, box-shadow 0.22s ease;
+    }
+    .founder-premium:hover {
+      transform: translateY(-3px);
+      box-shadow:
+        0 0 34px rgba(106,176,35,0.16),
+        0 22px 52px rgba(0,0,0,0.62);
+    }
 
+    .founder-badge {
+      display: inline-block;
+      padding: 4px 12px;
+      font-size: 0.75rem;
+      font-weight: 750;
+      border-radius: 999px;
+      background: rgba(106,176,35,0.16);
+      color: #d6f8ce;
+      border: 1px solid rgba(106,176,35,0.40);
+      margin-bottom: 14px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      width: fit-content;
+    }
+
+    .founder-body { display: flex; gap: 16px; align-items: flex-start; }
+    .founder-img-premium {
+      width: 74px; height: 74px;
+      border-radius: 16px;
+      object-fit: cover;
+      flex-shrink: 0;
+      border: 1.5px solid rgba(255,255,255,0.18);
+      box-shadow:
+        0 0 14px rgba(106,176,35,0.22),
+        0 6px 14px rgba(0,0,0,0.50);
+    }
+    .founder-name { margin: 0; font-size: 1.06rem; font-weight: 850; color: #ffffff; letter-spacing: 0.01em; }
+    .founder-role { margin: 2px 0 10px; font-size: 0.82rem; font-weight: 650; color: #b6cfc8; }
+    .founder-desc { margin-bottom: 8px; font-size: 0.83rem; line-height: 1.52; color: #d7e7e0; }
+
+    @media (max-width: 480px) {
+      .founder-body { flex-direction: column; align-items: center; text-align: center; }
+      .founder-img-premium { width: 104px; height: 104px; border-radius: 18px; }
+      .founder-desc { text-align: center; }
+    }
+
+    /* ==============================
+       FOOTER / LEGAL
+    ============================== */
     footer {
       max-width: var(--max-width);
       width: 100%;
@@ -479,7 +506,7 @@
       color: var(--text-muted);
       display: flex;
       flex-direction: column;
-      gap: 6px;
+      gap: 8px;
     }
 
     .footer-row {
@@ -490,37 +517,145 @@
       flex-wrap: wrap;
     }
 
-    .footer-links {
-      display: flex;
-      gap: 12px;
-      flex-wrap: wrap;
-    }
-
-    .footer-links a {
-      border-bottom: 1px dashed transparent;
-    }
-
-    .footer-links a:hover {
-      border-bottom-color: rgba(190,221,209,0.7);
-    }
+    .footer-links { display: flex; gap: 12px; flex-wrap: wrap; }
+    .footer-links a { border-bottom: 1px dashed transparent; }
+    .footer-links a:hover { border-bottom-color: rgba(190,221,209,0.65); }
 
     .legal-box {
       margin-top: 4px;
-      padding: 10px 11px;
-      border-radius: 12px;
-      border: 1px solid rgba(190,221,209,0.4);
+      padding: 11px 12px;
+      border-radius: 14px;
+      border: 1px solid rgba(190,221,209,0.35);
       background: rgba(7,26,22,0.92);
       font-size: 0.74rem;
       color: var(--text-muted);
-      line-height: 1.5;
+      line-height: 1.55;
+    }
+
+    /* ==============================
+       REVEAL ON SCROLL
+    ============================== */
+    .reveal {
+      opacity: 0;
+      transform: translateY(10px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+      will-change: transform, opacity;
+    }
+    .reveal.show { opacity: 1; transform: translateY(0); }
+
+    /* ==============================
+       MODAL
+    ============================== */
+    .modal-backdrop {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.62);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 100;
+      padding: 18px;
+    }
+    .modal {
+      width: min(720px, 96vw);
+      border-radius: 18px;
+      border: 1px solid rgba(255,255,255,0.10);
+      background: linear-gradient(145deg, rgba(16,60,49,0.94), rgba(7,26,22,0.96));
+      box-shadow: 0 30px 80px rgba(0,0,0,0.55);
+      overflow: hidden;
+    }
+    .modal-head {
+      padding: 14px 16px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+    .modal-title { font-weight: 850; letter-spacing: 0.01em; }
+    .modal-body { padding: 16px; display: grid; gap: 12px; }
+    .field {
+      display: grid;
+      gap: 6px;
+      font-size: 0.82rem;
+      color: var(--text-muted);
+    }
+    .input {
+      padding: 10px 12px;
+      border-radius: 12px;
+      border: 1px solid rgba(190,221,209,0.28);
+      background: rgba(7,26,22,0.70);
+      color: var(--text-main);
+      outline: none;
+    }
+    .input:focus {
+      border-color: rgba(106,176,35,0.55);
+      box-shadow: 0 0 0 6px rgba(106,176,35,0.10);
+    }
+    .modal-actions {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+      padding: 14px 16px;
+      border-top: 1px solid rgba(255,255,255,0.08);
+    }
+    .xbtn {
+      background: rgba(7,26,22,0.70);
+      border: 1px solid rgba(190,221,209,0.25);
+      color: var(--text-muted);
+      border-radius: 12px;
+      padding: 8px 10px;
+      cursor: pointer;
+    }
+    .xbtn:hover { border-color: rgba(106,176,35,0.45); color: #E8FFD1; }
+
+    .muted { color: var(--text-muted); }
+
+    /* small utility */
+    .sr-only {
+      position:absolute; width:1px; height:1px; padding:0; margin:-1px;
+      overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; border:0;
     }
   </style>
 </head>
 
 <body>
+  <!-- Sticky premium topbar -->
+  <div class="topbar">
+    <div class="topbar-inner">
+      <div class="topbar-left">
+        <div class="mini-mark" aria-hidden="true"></div>
+        <div class="topbar-brand">
+          <div class="name">SpenVest</div>
+          <div class="sub">Official site • Private development</div>
+        </div>
+      </div>
+
+      <nav class="topbar-nav" aria-label="Primary">
+        <a class="topbar-link" href="#overview">Overview</a>
+        <a class="topbar-link" href="#programs">Programs</a>
+        <a class="topbar-link" href="#company">Company</a>
+        <a class="topbar-link" href="#contact">Contact</a>
+        <a class="topbar-link" href="#founder">Founder</a>
+      </nav>
+
+      <div class="topbar-actions">
+        <button class="btn btn-ghost" id="btnBeta" type="button">
+          <span class="icon-dot" aria-hidden="true"></span>
+          Private beta
+        </button>
+
+        <a class="btn btn-primary" href="https://lab.spenvest.com.au" target="_blank" rel="noopener noreferrer">
+          SpenVest-Lab
+        </a>
+      </div>
+    </div>
+  </div>
+
   <div class="page">
-    <!-- HEADER: BIG LOGO, NAME, LOCATION -->
-    <header>
+    <!-- BRAND HEADER -->
+    <header class="reveal">
       <div class="brand-block">
         <div class="brand-logo">
           <img src="assets/spenvest-logo.png" alt="SpenVest logo" />
@@ -528,27 +663,17 @@
         <div class="brand-name">SpenVest Pty Ltd</div>
         <div class="brand-location">Canberra, ACT · Australia</div>
 
-        <div class="status-chip">
-          <span class="status-dot"></span>
-          In active development
+        <div class="status-chip" title="Status is informational only">
+          <span class="status-dot" aria-hidden="true"></span>
+          In active development · <span id="statusTime">updated</span>
         </div>
       </div>
     </header>
 
-    <!-- TOP NAV (Global site links) -->
-<div class="top-nav">
-  <div class="nav-inner">
-    <a class="nav-link primary" href="https://lab.spenvest.com.au" target="_blank" rel="noopener noreferrer">
-      SpenVest-Lab
-    </a>
-  </div>
-</div>
-
-
     <!-- MAIN CONTENT -->
     <main>
-      <!-- LEFT: HERO -->
-      <section class="hero">
+      <!-- LEFT: OVERVIEW / HERO -->
+      <section id="overview" class="panel hero reveal">
         <h1 class="hero-title">
           We are building <span>SpenVest</span> — a modern way to connect everyday spending with long-term financial wellbeing.
         </h1>
@@ -569,48 +694,19 @@
         </p>
 
         <div class="hero-actions">
-          <div class="btn btn-primary">Coming soon</div>
-          <div class="btn btn-ghost">Private beta · By invitation only</div>
+          <button class="btn btn-primary" id="btnComingSoon" type="button">Coming soon</button>
+          <button class="btn btn-ghost" id="btnInvite" type="button">Private beta · By invitation only</button>
           <div class="pill">
-            <span class="pill-dot"></span>
+            <span class="pill-dot" aria-hidden="true"></span>
             Core IP under active development &amp; protection
           </div>
         </div>
-
-        <!-- PROGRAMS PREVIEW (Company Portfolio) -->
-<section class="hero" style="margin-top: 14px;">
-  <h2 class="hero-title" style="font-size:1.35rem;">
-    Programs <span>by SpenVest</span>
-  </h2>
-
-  <p class="hero-body">
-    SpenVest operates capability-building programs through its Australian entity to support
-    practical job readiness and enterprise skills development. Programs are published and managed on
-    <strong>programs.spenvest.com.au</strong>.
-  </p>
-
-  <div class="hero-actions">
-    <a class="btn btn-primary" href="https://programs.spenvest.com.au" target="_blank" rel="noopener noreferrer">
-      Explore Programs (Australia)
-    </a>
-
-    <a class="btn btn-ghost" href="https://lab.spenvest.com.au" target="_blank" rel="noopener noreferrer">
-      SpenVest-Lab
-    </a>
-
-    <div class="pill">
-      <span class="pill-dot"></span>
-      Training programs are simulation-based (not employment)
-    </div>
-  </div>
-</section>
-
       </section>
 
       <!-- RIGHT: INFO CARDS -->
       <aside class="right-column">
         <!-- High-level overview -->
-        <div class="card">
+        <div class="card reveal">
           <div class="card-title">What we can share (high level)</div>
           <div class="card-body">
             <p>SpenVest is exploring ways to:</p>
@@ -629,7 +725,7 @@
         </div>
 
         <!-- Company info -->
-        <div class="card">
+        <div id="company" class="card reveal">
           <div class="card-title">Company information</div>
           <div class="card-body">
             <ul class="card-list">
@@ -639,7 +735,7 @@
               <li>
                 Registered office:<br />
                 <span style="color: var(--text-muted);">
-                   Level 2, 7 Neptune Street, Woden 2606
+                  Level 2, 7 Neptune Street, Woden 2606
                 </span>
               </li>
             </ul>
@@ -647,21 +743,26 @@
         </div>
 
         <!-- Contact -->
-        <div class="card" id="contact">
+        <div class="card reveal" id="contact">
           <div class="card-title">Contact &amp; partnerships</div>
           <div class="card-body">
             <p>For high-level enquiries or potential partnerships:</p>
             <ul class="card-list">
-              <li>Email (general): info@spenvest.com.au</li>
+              <li>Email (general): <strong style="color:#fff;">info@spenvest.com.au</strong></li>
             </ul>
             <p style="font-size:0.78rem; color:var(--text-muted);">
               Please note: We are not currently onboarding retail customers or offering live financial products.
             </p>
+
+            <div class="hero-actions" style="margin-top:10px;">
+              <button class="btn btn-ghost" id="copyEmail" type="button">Copy email</button>
+              <button class="btn btn-primary" id="btnContact" type="button">Send enquiry (demo)</button>
+            </div>
           </div>
         </div>
 
         <!-- Founder Premium Card -->
-        <div class="card founder-premium">
+        <div id="founder" class="card founder-premium reveal">
           <div class="founder-badge">Founder</div>
 
           <div class="founder-body">
@@ -682,17 +783,58 @@
             </div>
           </div>
         </div>
-
       </aside>
+
+      <!-- PROGRAMS (ARRANGED + LINKS TO SPENVEST-LAB PROGRAMS PAGE) -->
+      <section id="programs" class="panel hero reveal" style="grid-column: 1 / -1;">
+        <h2 class="hero-title" style="font-size:1.40rem;">
+          Programs <span>by SpenVest</span>
+        </h2>
+
+        <p class="hero-body">
+          SpenVest operates capability-building programs through its Australian entity to support
+          practical job readiness and enterprise skills development. All program details are published and managed via
+          <strong>SpenVest-Lab</strong>.
+        </p>
+
+        <div class="hero-actions">
+          <!-- Primary link requested -->
+          <a class="btn btn-primary" href="https://lab.spenvest.com.au/programs" target="_blank" rel="noopener noreferrer">
+            View Programs (SpenVest-Lab)
+          </a>
+
+          <a class="btn btn-ghost" href="https://lab.spenvest.com.au" target="_blank" rel="noopener noreferrer">
+            SpenVest-Lab Home
+          </a>
+
+          <div class="pill">
+            <span class="pill-dot" aria-hidden="true"></span>
+            Training programs are simulation-based (not employment)
+          </div>
+        </div>
+
+        <div class="card" style="margin-top:14px;">
+          <div class="card-title">What you can expect (high level)</div>
+          <div class="card-body">
+            <ul class="card-list">
+              <li>Job-ready simulations aligned to real business workflows.</li>
+              <li>Internship pathways (where offered) focused on deliverables and learning outcomes.</li>
+              <li>Clear scope, weekly checkpoints, and completion summaries.</li>
+            </ul>
+          </div>
+        </div>
+      </section>
     </main>
   </div>
 
   <!-- FOOTER & LEGAL -->
-  <footer>
+  <footer class="reveal">
     <div class="footer-row">
       <div>© <span id="year"></span> SpenVest Pty Ltd. All rights reserved.</div>
       <div class="footer-links">
         <a href="#contact">Contact</a>
+        <a href="https://lab.spenvest.com.au/programs" target="_blank" rel="noopener noreferrer">Programs (SpenVest-Lab)</a>
+        <a href="https://lab.spenvest.com.au" target="_blank" rel="noopener noreferrer">SpenVest-Lab</a>
       </div>
     </div>
 
@@ -703,23 +845,150 @@
       introductory and subject to change. It does not constitute financial advice, a recommendation,
       or an invitation to invest or acquire any financial product. Any future offering will be subject
       to separate terms, disclosures and, where applicable, regulatory approvals or licences.
-    <br /><br />
-<strong>Training &amp; internship disclaimer (SpenVest-Lab)</strong><br />
-SpenVest-Lab programs are training and simulation-based initiatives operated by SpenVest Pty Ltd (Australia).
-Participation does not guarantee employment. Internship pathways, where offered, are training-focused and subject
-to performance, availability, and program requirements.
-<div class="footer-links">
-  <a href="#contact">Contact</a>
-  <a href="https://spenvest.com.au/programs" target="_blank" rel="noopener noreferrer">Programs (AU)</a>
-</div>
-
-
+      <br /><br />
+      <strong>Training &amp; internship disclaimer (SpenVest-Lab)</strong><br />
+      SpenVest-Lab programs are training and simulation-based initiatives operated by SpenVest Pty Ltd (Australia).
+      Participation does not guarantee employment. Internship pathways, where offered, are training-focused and subject
+      to performance, availability, and program requirements.
+    </div>
   </footer>
 
+  <!-- Modal: Private beta / Enquiry (DEMO) -->
+  <div class="modal-backdrop" id="modalBackdrop" aria-hidden="true">
+    <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+      <div class="modal-head">
+        <div>
+          <div class="modal-title" id="modalTitle">Private beta (By invitation only)</div>
+          <div class="muted" style="font-size:0.78rem; margin-top:3px;">
+            Register interest for partnerships or future invite-only testing. High-level only.
+          </div>
+        </div>
+        <button class="xbtn" id="modalClose" type="button">Close</button>
+      </div>
+
+      <form class="modal-body" id="betaForm">
+        <label class="field">
+          Name
+          <input class="input" name="name" placeholder="Your name" required />
+        </label>
+
+        <label class="field">
+          Email
+          <input class="input" type="email" name="email" placeholder="you@company.com" required />
+        </label>
+
+        <label class="field">
+          Interest type
+          <select class="input" name="type" required>
+            <option value="">Select…</option>
+            <option>Partnership / Merchant</option>
+            <option>Research / Advisory</option>
+            <option>Programs / Training</option>
+            <option>General enquiry</option>
+          </select>
+        </label>
+
+        <label class="field">
+          Message (high level only)
+          <textarea class="input" name="message" rows="4" placeholder="Share context (no sensitive details)." required></textarea>
+        </label>
+
+        <div class="muted" style="font-size:0.74rem; line-height:1.5;">
+          Demo form: connect to your backend endpoint (e.g., <code>/api/intake</code>) or a form provider to receive submissions.
+        </div>
+      </form>
+
+      <div class="modal-actions">
+        <button class="btn btn-ghost" id="modalCopyEmail" type="button">Copy contact email</button>
+        <button class="btn btn-primary" form="betaForm" type="submit">Submit (demo)</button>
+      </div>
+    </div>
+  </div>
+
   <script>
+    // Year
     document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Status "updated" time (client-side)
+    const statusTime = document.getElementById('statusTime');
+    const now = new Date();
+    statusTime.textContent = now.toLocaleDateString(undefined, { year: "numeric", month: "short", day: "2-digit" });
+
+    // Reveal-on-scroll
+    const revealEls = document.querySelectorAll('.reveal');
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('show'); });
+    }, { threshold: 0.12 });
+    revealEls.forEach(el => io.observe(el));
+
+    // Scrollspy
+    const links = Array.from(document.querySelectorAll('.topbar-link'));
+    const sectionIds = ['overview','programs','company','contact','founder'];
+    const sections = sectionIds.map(id => document.getElementById(id)).filter(Boolean);
+
+    const spy = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (!entry.isIntersecting) return;
+        const id = entry.target.id;
+        links.forEach(a => a.classList.toggle('active', a.getAttribute('href') === '#' + id));
+      });
+    }, { rootMargin: "-45% 0px -50% 0px", threshold: 0.02 });
+
+    sections.forEach(s => spy.observe(s));
+
+    // Modal controls
+    const modalBackdrop = document.getElementById('modalBackdrop');
+    const modalClose = document.getElementById('modalClose');
+    const btnBeta = document.getElementById('btnBeta');
+    const btnComingSoon = document.getElementById('btnComingSoon');
+    const btnInvite = document.getElementById('btnInvite');
+    const btnContact = document.getElementById('btnContact');
+    const betaForm = document.getElementById('betaForm');
+    const copyEmailBtn = document.getElementById('copyEmail');
+    const modalCopyEmail = document.getElementById('modalCopyEmail');
+
+    function openModal(title) {
+      document.getElementById('modalTitle').textContent = title;
+      modalBackdrop.style.display = 'flex';
+      modalBackdrop.setAttribute('aria-hidden', 'false');
+    }
+    function closeModalFn() {
+      modalBackdrop.style.display = 'none';
+      modalBackdrop.setAttribute('aria-hidden', 'true');
+    }
+
+    btnBeta.addEventListener('click', () => openModal('Private beta (By invitation only)'));
+    btnInvite.addEventListener('click', () => openModal('Private beta (By invitation only)'));
+    btnComingSoon.addEventListener('click', () => openModal('Coming soon — Register interest'));
+    btnContact.addEventListener('click', () => openModal('Contact & partnerships — Enquiry'));
+
+    modalClose.addEventListener('click', closeModalFn);
+    modalBackdrop.addEventListener('click', (e) => { if (e.target === modalBackdrop) closeModalFn(); });
+    window.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeModalFn(); });
+
+    // Copy email
+    async function doCopyEmail(btn) {
+      try {
+        await navigator.clipboard.writeText('info@spenvest.com.au');
+        const original = btn.textContent;
+        btn.textContent = 'Copied';
+        setTimeout(() => btn.textContent = original, 1200);
+      } catch {
+        alert('Copy failed. Email: info@spenvest.com.au');
+      }
+    }
+    copyEmailBtn.addEventListener('click', () => doCopyEmail(copyEmailBtn));
+    modalCopyEmail.addEventListener('click', () => doCopyEmail(modalCopyEmail));
+
+    // Demo submit handler (replace with fetch to your endpoint)
+    betaForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const data = Object.fromEntries(new FormData(betaForm).entries());
+      console.log('SpenVest interest (demo):', data);
+      alert('Submitted (demo). Connect this form to your backend to receive submissions.');
+      betaForm.reset();
+      closeModalFn();
+    });
   </script>
 </body>
 </html>
-
-
